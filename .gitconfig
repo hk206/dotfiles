@@ -1,0 +1,17 @@
+[user]
+	email = hokuto.miyauchi@gmail.com
+	name = Miyauchi Hokuto
+[core]
+	excludesfile = ~/.gitignore
+	ignorecase = false
+	quotepath = false
+[color]
+	ui = auto
+[push]
+	default = current
+[init]
+	defaultBranch = main
+[alias]
+	co = checkout
+	discard = checkout --
+	unstage = reset HEAD --
