@@ -57,7 +57,7 @@ defaults -currentHost write -g com.apple.mouse.tapBehavior -bool "true"
 ## trajectory speed
 defaults write -g com.apple.trackpad.scaling 3
 ## scroll direction
-defaults write -g com.apple.swipescrolldirection -bool "false"
+defaults write -g com.apple.swipescrolldirection -bool "true"
 
 # Mouse
 ## trajectory speed
