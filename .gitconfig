@@ -1,0 +1,17 @@
+[user]
+	email = 48110124+hk206@users.noreply.github.com
+	name = Hokuto
+[core]
+	excludesfile = ~/.gitignore
+	ignorecase = false
+	quotepath = false
+[color]
+	ui = auto
+[push]
+	default = current
+[init]
+	defaultBranch = main
+[alias]
+	co = checkout
+	discard = checkout --
+	unstage = reset HEAD --
