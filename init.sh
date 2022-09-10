@@ -9,11 +9,13 @@ cd $THIS_DIR/homebrew
 ./setup.sh
 cd $THIS_DIR
 
-# asdf
-ln -snfv "$(pwd)/.node-versions" "$HOME/.node-versions"
-sudo mkdir -p "/usr/local/n"
-sudo chown -R "$HOME/usr/local/n"
-n install
+# n
+ln -snfv "$(pwd)/.node-version" "$HOME/.node-version"
+sudo mkdir /usr/local/n
+sudo chown -R "$(whoami)" "/usr/local/n"
+sudo mkdir /usr/local/bin /usr/local/lib /usr/local/include /usr/local/share
+sudo chown -R "$(whoami)" "/usr/local/bin" "/usr/local/lib" "/usr/local/include" "/usr/local/share"
+n auto
 
 # VSCode
 ./vscode/setup.sh
