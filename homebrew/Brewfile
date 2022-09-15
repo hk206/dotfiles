@@ -4,6 +4,7 @@ tap "homebrew/core"
 tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 tap "homebrew/cask-drivers"
+tap "planetscale/tap"
 
 cask_args appdir: "/Applications"
 
@@ -13,7 +14,7 @@ brew "curl"
 brew "mysql"
 brew "n"
 brew "mas"
-brew "planetscale/tap/pscale"
+brew "pscale"
 
 # cask
 cask "1password"
