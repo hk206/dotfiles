@@ -11,7 +11,11 @@
   "editor.minimap.enabled": false,
   "editor.suggest.snippetsPreventQuickSuggestions": false,
   "editor.suggestSelection": "first",
-  "editor.quickSuggestions": true,
+  "editor.quickSuggestions": {
+    "comments": "on",
+    "strings": "on",
+    "other": "on"
+  },
   "editor.parameterHints.enabled": false,
   "editor.trimAutoWhitespace": true,
   "extensions.autoCheckUpdates": true,
@@ -26,6 +30,8 @@
     "yaml": true,
     "plaintext": false,
     "markdown": false,
+    "typescript": true,
+    "javascript": true,
     "ignore": true
   },
   "gitlens.currentLine.enabled": true,
@@ -41,10 +47,11 @@
   "keyboard.dispatch": "keyCode",
   "window.openFilesInNewWindow": "off",
   "window.newWindowDimensions": "maximized",
-  "workbench.colorTheme": "GitHub Dark Colorblind (Beta)",
+  "workbench.colorTheme": "GitHub Dark Default",
   "workbench.editor.tabSizing": "shrink",
   "workbench.iconTheme": "material-icon-theme",
   "workbench.startupEditor": "none",
   "workbench.tree.indent": 20,
   "workbench.tree.renderIndentGuides": "always",
+  "cSpell.userWords": ["Consts", "rfdc", "SHOWDONE", "signin"]
 }
