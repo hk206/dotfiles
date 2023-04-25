@@ -13,13 +13,11 @@ brew "awscli"
 brew "curl"
 brew "mysql"
 brew "n"
-brew "mas"
+# brew "mas"
 brew "pscale"
 
 # cask
 cask "1password"
-cask "brave-browser"
-cask "clipy"
 cask "deepl"
 cask "discord"
 cask "docker"
@@ -27,20 +25,17 @@ cask "figma"
 cask "fork"
 cask "google-chrome"
 cask "google-japanese-ime"
-cask "kindle"
-cask "kindle-previewer"
 cask "notion"
 cask "postman"
 cask "raycast"
 cask "slack"
 cask "spotify"
-cask "stoplight-studio"
 cask "visual-studio-code"
 cask "warp"
 cask "zoom"
 
 
 ## mas
-mas "LINE", id: 539883307
-mas "Magnet", id: 441258766
+## mas "LINE", id: 539883307
+## mas "Magnet", id: 441258766
 mas "Display Menu", id: 549083868
