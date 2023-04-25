@@ -34,8 +34,7 @@ cask "visual-studio-code"
 cask "warp"
 cask "zoom"
 
-
 ## mas
 ## mas "LINE", id: 539883307
 ## mas "Magnet", id: 441258766
-mas "Display Menu", id: 549083868
+## mas "Display Menu", id: 549083868
