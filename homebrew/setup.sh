@@ -6,7 +6,6 @@ if !(type "brew" >/dev/null 2>&1); then
 fi
 
 # for AppleSilicon
-# google-japanese-imeのインストールにRosetta2が必要
 sudo softwareupdate --install-rosetta
 
 echo "run brew doctor ..."
