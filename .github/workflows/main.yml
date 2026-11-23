@@ -1,3 +1,4 @@
+# macOS 上でセットアップ用ファイルの構文を確認する。
 name: CI
 
 on:
@@ -13,5 +14,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Run install script
-        run: ${GITHUB_WORKSPACE}/init.sh
+      - name: Check shell and Brewfile syntax
+        run: |
+          zsh -n .zprofile
+          zsh -n .zshrc
+          for script in init.sh homebrew/setup.sh node/setup.sh mac/setup.sh; do
+            bash -n "$script" || exit 1
+          done
+          ruby -c homebrew/Brewfile

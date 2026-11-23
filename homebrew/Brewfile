@@ -1,41 +1,38 @@
-# tap
-tap "homebrew/bundle"
-tap "homebrew/core"
-tap "homebrew/cask"
-tap "homebrew/cask-fonts"
-tap "homebrew/cask-drivers"
-tap "planetscale/tap"
+# 新しい Mac に入れる CLI、アプリの一覧。
 
 cask_args appdir: "/Applications"
 
 # brew
 brew "awscli"
+brew "bun" # JavaScript の実行と依存関係の管理。
 brew "curl"
+brew "gh" # GitHub の PR や Issue をターミナルから操作する。
 brew "mysql"
-brew "n"
-# brew "mas"
-brew "pscale"
+brew "postgresql@19" # ローカル開発用の PostgreSQL。
+brew "starship" # 現在のディレクトリと Git の状態を表示するプロンプト。
+brew "uv" # Python の実行環境と依存関係の管理。
+
+brew "zsh-autosuggestions" # 履歴から入力中のコマンドの続きを提案する。
+brew "zsh-completions" # Tab 補完に対応するコマンドを増やす。
 
 # cask
 cask "1password"
-cask "deepl"
+# AI デスクトップアプリとターミナルで使うエージェント。
+cask "chatgpt"
+cask "codex"
+cask "claude"
+cask "claude-code@latest"
+# 開発用エディターとターミナル。
+cask "cursor"
+cask "ghostty"
+
 cask "discord"
 cask "docker"
-cask "figma"
-cask "fork"
 cask "google-chrome"
 cask "google-japanese-ime"
 cask "notion"
-cask "postman"
 cask "raycast"
 cask "rectangle"
 cask "slack"
 cask "spotify"
-cask "visual-studio-code"
-cask "warp"
 cask "zoom"
-
-## mas
-## mas "LINE", id: 539883307
-## mas "Magnet", id: 441258766
-## mas "Display Menu", id: 549083868

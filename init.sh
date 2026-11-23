@@ -1,24 +1,43 @@
-THIS_DIR=$(cd $(dirname $0); pwd)
+# リポジトリの場所を基準に、ホームへのリンクを作成して各セットアップを実行する。
+THIS_DIR=$(cd "$(dirname "$0")" && pwd) || exit 1
 
-for dotfile in .zshrc .zprofile .alias.zsh .gitconfig .gitignore; do
-	ln -snfv "${THIS_DIR}/$dotfile" "$HOME/$dotfile"
+dotfiles=(.zshrc .zprofile .gitconfig .gitignore ghostty/config starship.toml)
+
+# Ghostty と Starship は XDG_CONFIG_HOME を使い、未指定なら ~/.config を使う。
+dotfile_target() {
+    case "$1" in
+        ghostty/config) printf '%s/ghostty/config\n' "${XDG_CONFIG_HOME:-$HOME/.config}" ;;
+        starship.toml) printf '%s/starship.toml\n' "${XDG_CONFIG_HOME:-$HOME/.config}" ;;
+        *) printf '%s/%s\n' "$HOME" "$1" ;;
+    esac
+}
+
+# 既存の設定を保護するため、すべてのリンク先を先に確認する。
+for dotfile in "${dotfiles[@]}"; do
+    target=$(dotfile_target "$dotfile")
+    if [ -L "$target" ] && [ "$(readlink "$target")" = "$THIS_DIR/$dotfile" ]; then
+        continue
+    fi
+    if [ -e "$target" ] || [ -L "$target" ]; then
+        printf '既存の設定があるため中止しました: %s\n' "$target" >&2
+        exit 1
+    fi
+done
+
+for dotfile in "${dotfiles[@]}"; do
+    target=$(dotfile_target "$dotfile")
+    if [ -L "$target" ] && [ "$(readlink "$target")" = "$THIS_DIR/$dotfile" ]; then
+        continue
+    fi
+    mkdir -p "$(dirname "$target")" || exit 1
+    ln -snv "$THIS_DIR/$dotfile" "$target" || exit 1
 done
 
 # Homebrew
-cd $THIS_DIR/homebrew
-./setup.sh
-cd $THIS_DIR
+(cd "$THIS_DIR/homebrew" && bash setup.sh) || exit 1
 
-# n
-ln -snfv "$(pwd)/.node-version" "$HOME/.node-version"
-sudo mkdir -p /usr/local/n
-sudo chown -R "$(whoami)" "/usr/local/n"
-sudo mkdir -p /usr/local/bin /usr/local/lib /usr/local/include /usr/local/share
-sudo chown -R "$(whoami)" "/usr/local/bin" "/usr/local/lib" "/usr/local/include" "/usr/local/share"
-n auto
-
-# VSCode
-./vscode/setup.sh
+# Node.js
+bash "$THIS_DIR/node/setup.sh" || exit 1
 
 # Mac Setup
-./mac/setup.sh
+bash "$THIS_DIR/mac/setup.sh"

@@ -1,3 +1,4 @@
+# Git のユーザー情報、既定の挙動、短縮コマンドを設定する。
 [user]
 	email = 48110124+hk206@users.noreply.github.com
 	name = Hokuto

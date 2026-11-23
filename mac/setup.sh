@@ -1,6 +1,9 @@
+#!/usr/bin/env bash
+# macOS の Dock、Finder、入力などの好みを適用する。
+# 設定に失敗したら、失敗箇所を表示し、その時点で中止する。
+set -e
+trap 'printf "macOS 設定に失敗しました (%s:%s): %s\n" "${BASH_SOURCE[0]}" "$LINENO" "$BASH_COMMAND" >&2' ERR
 # Dock
-## delete all apps in dock
-defaults write com.apple.dock persistent-apps -array
 ## set size of dock icons
 defaults write com.apple.dock "tilesize" -int "36"
 ## undisplay recently used apps
@@ -30,10 +33,6 @@ defaults write NSGlobalDomain "AppleShowAllExtensions" -bool "true"
 defaults write com.apple.Finder "AppleShowAllFiles" -bool "true"
 ## show passbar
 defaults write com.apple.finder ShowPathbar -bool "true"
-## disable warning when opening unidentified files
-defaults write com.apple.LaunchServices LSQuarantine -bool "false"
-## disable warning when emptying trash
-defaults write com.apple.finder WarnOnEmptyTrash -bool "false"
 
 # Feedback
 ## do not send feedback
@@ -76,8 +75,6 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 15
 sudo defaults write /Library/Preferences/com.Apple.alf globalstate -int 1
 
 # Others
-## use google public dns
-networksetup -setdnsservers Wi-Fi 2001:4860:4860::8844 2001:4860:4860::8888 8.8.4.4 8.8.8.8
 ## unuse auto camelcase
 defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool "false"
 ## unvalidate spell check
