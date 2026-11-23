@@ -1,11 +1,20 @@
 # リポジトリの場所を基準に、ホームへのリンクを作成して各セットアップを実行する。
 THIS_DIR=$(cd "$(dirname "$0")" && pwd) || exit 1
 
-dotfiles=(.zshrc .zprofile .gitconfig .gitignore)
+dotfiles=(.zshrc .zprofile .gitconfig .gitignore ghostty/config starship.toml)
+
+# Ghostty と Starship は XDG_CONFIG_HOME を使い、未指定なら ~/.config を使う。
+dotfile_target() {
+    case "$1" in
+        ghostty/config) printf '%s/ghostty/config\n' "${XDG_CONFIG_HOME:-$HOME/.config}" ;;
+        starship.toml) printf '%s/starship.toml\n' "${XDG_CONFIG_HOME:-$HOME/.config}" ;;
+        *) printf '%s/%s\n' "$HOME" "$1" ;;
+    esac
+}
 
 # 既存の設定を保護するため、すべてのリンク先を先に確認する。
 for dotfile in "${dotfiles[@]}"; do
-    target="$HOME/$dotfile"
+    target=$(dotfile_target "$dotfile")
     if [ -L "$target" ] && [ "$(readlink "$target")" = "$THIS_DIR/$dotfile" ]; then
         continue
     fi
@@ -16,10 +25,11 @@ for dotfile in "${dotfiles[@]}"; do
 done
 
 for dotfile in "${dotfiles[@]}"; do
-    target="$HOME/$dotfile"
+    target=$(dotfile_target "$dotfile")
     if [ -L "$target" ] && [ "$(readlink "$target")" = "$THIS_DIR/$dotfile" ]; then
         continue
     fi
+    mkdir -p "$(dirname "$target")" || exit 1
     ln -snv "$THIS_DIR/$dotfile" "$target" || exit 1
 done
 

@@ -25,10 +25,12 @@ bash init.sh
 | `homebrew/Brewfile` | 新しい Mac に入れる CLI とアプリの一覧。必要な項目に絞ってからセットアップする |
 | `homebrew/setup.sh` | Homebrew の導入と、一覧にある未導入パッケージのインストール |
 | `node/setup.sh` | nvm を初回導入し、Node.js 22・24・26 の各系列の最新版を取得する。既定は 26 |
+| `ghostty/config` | Ghostty のテーマ、文字サイズ、キー操作。設定先は `${XDG_CONFIG_HOME:-$HOME/.config}/ghostty/config` |
+| `starship.toml` | ディレクトリ、Git ブランチ、未コミットの変更を表示するプロンプト。設定先は `${XDG_CONFIG_HOME:-$HOME/.config}/starship.toml` |
 | `mac/setup.sh` | Dock、Finder、スクリーンショット、入力などの個人設定 |
 | `.github/workflows/main.yml` | macOS 上でシェルと Brewfile の構文を確認する CI の定義 |
 
-ブラウザは Chrome を導入します。Bun と uv は Homebrew で導入します。開発用に ChatGPT、Codex CLI、Claude、Claude Code、Cursor、Ghostty も導入します。Ghostty と Starship の設定は管理対象外です。
+ブラウザは Chrome を導入します。Bun と uv は Homebrew で導入します。開発用に ChatGPT、Codex CLI、Claude、Claude Code、Cursor、Ghostty も導入します。Ghostty の設定もリンクします。既存の設定がある場合は、上記の手順で退避してください。Starship も導入し、Git ブランチと未コミットの変更をプロンプトに表示します。
 
 ## Node.js の更新
 

@@ -9,7 +9,11 @@ brew "curl"
 brew "gh" # GitHub の PR や Issue をターミナルから操作する。
 brew "mysql"
 brew "postgresql@19" # ローカル開発用の PostgreSQL。
+brew "starship" # 現在のディレクトリと Git の状態を表示するプロンプト。
 brew "uv" # Python の実行環境と依存関係の管理。
+
+brew "zsh-autosuggestions" # 履歴から入力中のコマンドの続きを提案する。
+brew "zsh-completions" # Tab 補完に対応するコマンドを増やす。
 
 # cask
 cask "1password"

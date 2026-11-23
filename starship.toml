@@ -1,0 +1,18 @@
+# 現在のディレクトリ、Git ブランチ、未コミットの変更を表示する。
+add_newline = false
+format = '$directory$git_branch$git_status$character'
+
+[git_branch]
+format = '[$branch]($style) '
+
+[git_status]
+# 変更の種類ごとに * を表示する。クリーンなら表示しない。
+format = '([$all_status]($style) )'
+conflicted = '*'
+stashed = ''
+deleted = '*'
+renamed = '*'
+modified = '*'
+typechanged = '*'
+staged = '*'
+untracked = '*'
