@@ -1,52 +1,35 @@
-# dotfiles(for AppleSilicon MacBook)
+# Apple Silicon Mac の dotfiles
 
-## セットアップ
+zsh と Git の設定、Homebrew のアプリ一覧、Node.js、macOS の個人設定を管理します。
 
-- AppStore にサインイン
-- 以下のコードをターミナルで実行
+## 新しい Mac でセットアップ
+
+Xcode Command Line Tools が未導入なら `xcode-select --install` を実行し、完了を待ちます。
 
 ```sh
-cd $HOME
-xcode-select --install
 git clone https://github.com/hk206/dotfiles.git
 cd dotfiles
-./init.sh
+bash init.sh
 ```
 
-- Mac を再起動
+`init.sh` はホーム直下の `.zshrc`、`.zprofile`、`.gitconfig`、`.gitignore` に、このリポジトリへのリンクを作ります。同じリンクはそのまま使い、既存のファイルや別のリンクがある場合は、リンクを作る前に停止します。セットアップ後は新しいターミナルを開きます。
 
-## その他手動で行う設定
+既存の設定があると表示された場合は、そのファイルやリンクを別名で退避します。たとえば `~/.zshrc` なら、退避先が空いていることを確認して `mv -i ~/.zshrc ~/.zshrc.backup` を実行します。必要な個人設定をリポジトリ側に移してから `bash init.sh` を再実行してください。退避ファイルに認証情報がある場合は Git に追加せず、端末側に保存します。
 
-### システム環境設定
+## 管理しているもの
 
-- デスクトップ画像・ユーザーアイコン編集
-- システム環境設定 > キーボード > 入力ソースを Google 日本語入力に変更
-- システム環境設定 > キーボード > ショートカット > Spotlight > Spotlight 検索を表示のショートカットを off にする
-- システム環境設定 > キーホード > ショートカット > Mission Control > デスクトップ n へ切り替えを on にする
-- システム環境設定 > キーホード > ショートカット > キーボード > 次のウィンドウを捜査対象にするの割当を option + tab にする
-- システム環境設定 > セキュリティとプライバシー > 一般 > スリープとスクリーンセーバーの解除にパスワードを要求を、開始後すぐにする
-- システム環境設定 > セキュリティとプライバシー > 一般 > Apple Watch を使ってアプリケーションとこの Mac のロックを解除を on にする
-- システム環境設定 > ソフトウェアアップデート > Mac を自動的に最新の状態に保つを on にする
-- システム環境設定 > バッテリー > バッテリー > ディスプレイをオフにするを 15 分に設定
-- システム環境設定 > バッテリー > 電源アダプタ > ディスプレイをオフにするを 15 分に設定
+| ファイル | 役割 |
+| --- | --- |
+| `.zprofile`、`.zshrc` | ログイン時の PATH と対話用 zsh の設定 |
+| `.gitconfig`、`.gitignore` | ユーザー共通の Git 設定と除外パターン |
+| `homebrew/Brewfile` | 新しい Mac に入れる CLI とアプリの一覧。必要な項目に絞ってからセットアップする |
+| `homebrew/setup.sh` | Homebrew の導入と、一覧にある未導入パッケージのインストール |
+| `node/setup.sh` | nvm を初回導入し、Node.js 22・24・26 の各系列の最新版を取得する。既定は 26 |
+| `mac/setup.sh` | Dock、Finder、スクリーンショット、入力などの個人設定 |
+| `.github/workflows/main.yml` | macOS 上でシェルと Brewfile の構文を確認する CI の定義 |
 
-### Finder
+ブラウザは Chrome を導入します。Bun と uv は Homebrew で導入します。開発用に ChatGPT、Codex CLI、Claude、Claude Code、Cursor、Ghostty も導入します。Ghostty と Starship の設定は管理対象外です。
 
-- よく使う項目にホームディレクトリを追加
+## Node.js の更新
 
-### Google Chrome
-
-- 初回起動時、デフォルトブラウザを chrome に設定
-- Google アカウントで同期する
-
-### 1Password
-
-- 環境設定 > 詳細設定 > Spotlight を有効にして、サードパーティアプリを統合を on にする
-
-### VSCode
-
-- GitHub アカウントで認可
-
-### AWS
-
-- aws configure コマンドで認証情報の設定を行う
+既存の Mac では、このリポジトリで `bash node/setup.sh` を実行します。既存の nvm を使い、実行時点の各系列の最新版を取得します。反映には新しいターミナルを開きます。
